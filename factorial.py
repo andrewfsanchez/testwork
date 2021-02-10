@@ -14,7 +14,7 @@ def fact(n):
 
 def div(n):
     """
-    Just divide
+    Just dividing
     """
     res = 10 / n
     return res
