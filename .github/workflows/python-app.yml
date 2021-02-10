@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ master ]
+    branches: [ staging ]
   pull_request:
-    branches: [ master ]
+    branches: [ staging ]
 
 jobs:
   build:
@@ -34,3 +34,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+        git checkout master
+        git merge staging
