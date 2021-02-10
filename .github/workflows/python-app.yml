@@ -5,13 +5,12 @@ name: Python application
 
 on:
   push:
-    branches: [ master ]
+    branches: [ staging ]
   pull_request:
-    branches: [ master ]
+    branches: [ staging ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -34,3 +33,15 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+  merge-branch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Merge staging to Master
+      uses: devmasx/merge-branch@v1.3.1
+      with:
+        type: now
+        target_branch: master
+        github_token: ${{github.token}}
